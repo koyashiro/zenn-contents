@@ -4,7 +4,7 @@
   "description": "koyashiro's Zenn contents",
   "author": "koyashiro",
   "devDependencies": {
-    "prettier": "^3.1.1",
+    "prettier": "3.1.1",
     "zenn-cli": "0.1.150"
   },
   "privatee": true,
