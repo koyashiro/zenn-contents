@@ -1,0 +1,13 @@
+{
+  "name": "zenn-contents",
+  "version": "0.0.0",
+  "description": "koyashiro's Zenn contents",
+  "author": "koyashiro",
+  "devDependencies": {
+    "zenn-cli": "0.1.150"
+  },
+  "privatee": true,
+  "volta": {
+    "node": "20.10.0"
+  }
+}
