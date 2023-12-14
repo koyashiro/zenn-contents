@@ -3,8 +3,8 @@ title: "Rosetta for Linux を使って Arch Linux ARM で x86_64 バイナリを
 emoji: "🖥"
 type: "tech"
 topics: ["mac", "rosetta2", "vm", "archlinux", "docker"]
-published: false
-# published_at: 2023-12-14 19:00
+published: true
+published_at: 2023-12-14 19:30
 publication_name: team_soda
 ---
 
