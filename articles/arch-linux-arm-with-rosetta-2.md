@@ -206,7 +206,7 @@ Device       Start       End   Sectors   Size Type
 
 :::message
 `fdisk` の使い方は割愛します。
-Arch Linux Wiki の `fdisk` のページが詳しです。以下をご参照ください。
+Arch Linux Wiki の `fdisk` のページが詳しいです。以下をご参照ください。
 @[card](https://wiki.archlinux.org/title/fdisk)
 :::
 
