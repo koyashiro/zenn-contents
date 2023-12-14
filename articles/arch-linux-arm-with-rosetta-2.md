@@ -14,9 +14,11 @@ publication_name: team_soda
 
 ## はじめに
 
-macOS 13 Ventura から Apple Silicon の Rosetta 2 が仮想マシンで使えるようになりました。
+SODA ではローカル開発環境の構築に Docker を使っています。
+MySQL や Redis など、イチから構築しようとすると面倒な開発環境をコード化してメンバー間で共有できるため、大変便利です。
 
-macOS で Docker を使おうとすると [Docker Desktop](https://docs.docker.com/desktop/) や [lima](https://lima-vm.io/) を使うことになりますが、i/o パフォーマンスの課題や macOS と Linux の差異から macOS で Docker を使った開発の体験が良くないと感じていました[^orbstack]。
+しかし macOS で Docker を使おうとすると [Docker Desktop](https://docs.docker.com/desktop/) や [lima](https://lima-vm.io/) を使うことになります。
+これらのツールは i/o パフォーマンスが遅かったり、macOS と Linux の差異に悩まされることが多く、macOS で Docker を使う開発の体験が良くないと感じていました[^orbstack]。
 
 [^orbstack]: [OrbStack](https://orbstack.dev/) は筆者が未使用なため未知数です。
 
