@@ -4,7 +4,7 @@
   "description": "koyashiro's Zenn contents",
   "author": "koyashiro",
   "devDependencies": {
-    "markdownlint-cli2": "0.12.0",
+    "markdownlint-cli2": "0.12.1",
     "prettier": "3.2.2",
     "zenn-cli": "0.1.150"
   },
