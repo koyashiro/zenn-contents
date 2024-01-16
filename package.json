@@ -6,7 +6,7 @@
   "devDependencies": {
     "markdownlint-cli2": "0.12.1",
     "prettier": "3.2.2",
-    "zenn-cli": "0.1.150"
+    "zenn-cli": "0.1.151"
   },
   "privatee": true,
   "volta": {
