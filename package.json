@@ -10,6 +10,6 @@
   },
   "privatee": true,
   "volta": {
-    "node": "20.12.2"
+    "node": "20.13.0"
   }
 }
