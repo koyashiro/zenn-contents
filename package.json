@@ -5,7 +5,7 @@
   "author": "koyashiro",
   "devDependencies": {
     "markdownlint-cli2": "0.15.0",
-    "prettier": "3.4.1",
+    "prettier": "3.4.2",
     "zenn-cli": "0.1.158"
   },
   "privatee": true,
