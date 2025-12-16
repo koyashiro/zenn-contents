@@ -236,36 +236,32 @@ ManufacturerData が16バイト、 ServiceData が 3バイトあるようです�
 
 まずは3バイトしかない ServiceData から調べていきます。
 
-ドキュメントを見てみると
+| データ      | キー                                                  | バイト数 | 値         |
+| ----------- | ----------------------------------------------------- | -------- | ---------- |
+| ServiceData | `0000fd3d-0000-1000-8000-00805f9b34fb`[^service-uuid] | 3        | `0x350064` |
 
-```
-ServiceData:        { 0000fd3d-0000-1000-8000-00805f9b34fb: 0x350064 }
-```
+ドキュメントの [Broadcast Message](https://github.com/OpenWonderLabs/SwitchBotAPI-BLE/blob/2bd727ecf7c0898b25ac2df58a4886b5930c9138/devicetypes/meter.md#new-broadcast-message) の記述を見てみると
 
-> The Byte: 0, Byte: 1 and Byte: 2 are for every Device Type.
-
-<https://github.com/OpenWonderLabs/SwitchBotAPI-BLE/blob/2bd727ecf7c0898b25ac2df58a4886b5930c9138/devicetypes/meter.md#new-broadcast-message>
+https://github.com/OpenWonderLabs/SwitchBotAPI-BLE/blob/2bd727ecf7c0898b25ac2df58a4886b5930c9138/devicetypes/meter.md#L128
 
 と記載があり、0バイト目がデバイス識別のための Device type 、2バイト目がバッテリー残量となっているようです。
 
 今回の計測結果では Device type にあたる0バイト目が `0x35`、 バッテリー残量にあたる2バイト目が `0x64` でした。
 SwitchBotアプリで確認したバッテリー残量は100%であったため、 BLEに含まれているバッテリー残量 `0x64 = 100%`と一致しています。
 
+ServiceDataにはデバイス種別とバッテリー残量の情報しか含まれておらず、温湿度やCO2濃度は含まれていませんでした。そのため、より多くのデータが含まれているManufacturerDataを解析していきます。
+
 ## ManufacturerData の解析
 
 次に16バイトある ManufacturerData を調べます。
 
-```
-ManufacturerData:   { 0x0969: 0x00005E00530069E402982C0031038700 }
-```
+| データ           | キー                  | バイト数 | 値                                   |
+| ---------------- | --------------------- | -------- | ------------------------------------ |
+| ManufacturerData | `0x0969`[^company-id] | 16       | `0x00005E00530069E402982C0031038700` |
 
-ドキュメントの[Outdoor Temperature/Humidity Sensor の記述](https://github.com/OpenWonderLabs/SwitchBotAPI-BLE/blob/2bd727ecf7c0898b25ac2df58a4886b5930c9138/devicetypes/meter.md#outdoor-temperaturehumidity-sensor)が参考になりそうなので、こちらをもとに調べます。
+ドキュメントの [Outdoor Temperature/Humidity Sensor](https://github.com/OpenWonderLabs/SwitchBotAPI-BLE/blob/2bd727ecf7c0898b25ac2df58a4886b5930c9138/devicetypes/meter.md#outdoor-temperaturehumidity-sensor) の記述が参考になりそうなので、こちらをもとに調べます。
 
-> ```
-> # Data from Type: 0xFF (Manufacturer Specific Data)
-> temp = ((data[10] & 0x0F) * 0.1 + (data[11] & 0x7F)) * (((data[11] & 0x80) > 0 : 1 : -1);
-> humidity = data[12] & 0x7F;
-> ```
+https://github.com/OpenWonderLabs/SwitchBotAPI-BLE/blob/2bd727ecf7c0898b25ac2df58a4886b5930c9138/devicetypes/meter.md#L593-L595
 
 10~11バイト目から温度を、12バイト目から湿度を計算できるようです。
 
